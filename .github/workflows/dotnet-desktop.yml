@@ -1,4 +1,4 @@
-name: .NET Console Application CI
+name: .NET Console App CI
 
 on:
   push:
@@ -13,17 +13,15 @@ jobs:
       matrix:
         configuration: [Debug, Release]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
 
     env:
       Solution_Name: Console_Emoticon_Support.sln
       Project_Path: Console_Emoticon_Support/Console_Emoticon_Support.csproj
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -33,47 +31,24 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore $env:Solution_Name
 
-    - name: Syntax and code formatting check
-      run: |
-        dotnet format --verify-no-changes
+    - name: Install dotnet-format tool
+      run: dotnet tool install -g dotnet-format
+
+    - name: Check code formatting
+      run: dotnet format $env:Solution_Name --verify-no-changes
       continue-on-error: false
 
-    - name: Build solution (syntax error checking)
-      run: dotnet build $env:Solution_Name --configuration ${{ matrix.configuration }} --no-restore
+    - name: Build
+      run: dotnet build $env:Solution_Name --configuration ${{ matrix.configuration }}
 
-    - name: Run unit tests
-      run: dotnet test $env:Solution_Name --configuration ${{ matrix.configuration }} --no-build --verbosity normal
+    - name: Run tests
+      run: dotnet test $env:Solution_Name --configuration ${{ matrix.configuration }}
 
-    - name: Publish application
+    - name: Publish
       run: dotnet publish $env:Project_Path --configuration ${{ matrix.configuration }} --output ./publish
 
-    - name: Upload published artifacts
+    - name: Upload published files
       uses: actions/upload-artifact@v4
       with:
-        name: PublishedApp-${{ matrix.os }}-${{ matrix.configuration }}
+        name: PublishedApp-${{ matrix.configuration }}
         path: ./publish
-
-  tag-version:
-    if: github.ref == 'refs/heads/master'
-    runs-on: windows-latest
-    needs: build-test-publish
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Git user
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-
-    - name: Get version from project file
-      id: get_version
-      run: |
-        VERSION=$(grep -oPm1 "(?<=<Version>)[^<]+" Console_Emoticon_Support/Console_Emoticon_Support.csproj)
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-
-    - name: Create and push tag
-      run: |
-        git tag "v${{ steps.get_version.outputs.version }}"
-        git push origin "v${{ steps.get_version.outputs.version }}"
