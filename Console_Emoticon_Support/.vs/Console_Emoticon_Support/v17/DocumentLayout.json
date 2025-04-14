@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER-PC\\source\\repos\\Console_Emoticon_Support\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{56D91D58-C3A6-45C6-99DC-BED71DF4B3EE}|Console_Emoticon_Support\\Console_Emoticon_Support.csproj|c:\\users\\user-pc\\source\\repos\\console_emoticon_support\\console_emoticon_support\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56D91D58-C3A6-45C6-99DC-BED71DF4B3EE}|Console_Emoticon_Support\\Console_Emoticon_Support.csproj|solutionrelative:console_emoticon_support\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\source\\repos\\Console_Emoticon_Support\\Console_Emoticon_Support\\Program.cs",
+              "RelativeDocumentMoniker": "Console_Emoticon_Support\\Program.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\source\\repos\\Console_Emoticon_Support\\Console_Emoticon_Support\\Program.cs",
+              "RelativeToolTip": "Console_Emoticon_Support\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T04:09:36.978Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
