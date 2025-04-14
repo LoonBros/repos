@@ -16,7 +16,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: Console_Emoticon_Support.sln
+      Solution_Name: repos/Console_Emoticon_Support/Console_Emoticon_Support.sln
       Project_Path: Console_Emoticon_Support/Console_Emoticon_Support.csproj
 
     steps:
